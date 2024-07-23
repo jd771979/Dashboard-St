@@ -1,0 +1,17 @@
+def luhn_check(card_number):
+    # Convert the card number to a list of integers
+    digits = [int(d) for d in str(card_number)]
+    # Double every second digit from the right and subtract 9 if greater than 9
+    for i in range(len(digits) - 2, -1, -2):
+        digits[i] = digits[i] * 2
+        if digits[i] > 9:
+            digits[i] -= 9
+    # Sum all the digits
+    total = sum(digits)
+    # If the total modulo 10 is 0, the number is valid
+    return total % 10 == 0
+
+# Example usage
+card_number = "4532015112830366"
+is_valid = luhn_check(card_number)
+print(f"The card number is {'valid' if is_valid else 'invalid'}.")
